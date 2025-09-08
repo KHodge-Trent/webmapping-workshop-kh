@@ -1,0 +1,66 @@
+<html>
+
+<head>
+
+  <title>Leaflet Boilerplate</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Source for your Leaflet JavaScript and CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!--Add scripts that link to data sources here-->
+  <script src="./community-gardens.js" charset="utf-8"></script>
+
+
+
+</head>
+
+<body>
+  <!-- Your map's HTML container -->
+  <div id="mapid" style="height: 100%;"></div>
+
+  <!-- Data layers, their interactivity, and styling are contained within <script> </script> elements -->
+  <script>
+
+    // Initialize your map
+    var mymap = L.map('mapid').setView([49.259, -123.137], 12);
+
+    //Load the tile layer
+    //var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    //).addTo(mymap);
+
+    var Stadia_StamenWatercolor = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}', {
+      minZoom: 1,
+      maxZoom: 16,
+      attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      ext: 'jpg'
+    }).addTo(mymap);
+
+    // Add your marker(s) here
+    var outlook = L.marker([49.26711745383916, -123.13196318772637]).addTo(mymap).bindPopup("Resting spot with a nice outlook.");
+    var UBC = L.marker([49.26186749272789, -123.25012207031249]).addTo(mymap).bindPopup("University of British Columbia (UBC)");
+   
+
+
+    // Add point layer here
+    L.geoJson(communityGardens).addTo(mymap);
+     
+
+
+
+    
+    // Add polygon layer here
+
+
+  </script>
+
+
+</body>
+
+</html>
